@@ -1,0 +1,47 @@
+@Service
+public class TimeSyncService {
+
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    public void syncTime(Map<String, Object> cmd) throws Exception {
+
+        long effectAt = ((Number) cmd.get("effectAt")).longValue();
+        long targetClientTime = ((Number) cmd.get("targetClientTime")).longValue();
+        String serverUrl = (String) cmd.get("serverUrl");
+        String clientId = (String) cmd.get("clientId");
+
+        RestTemplate restTemplate = new RestTemplate();
+        int sampleCount = 5;
+        List<Long> oneWayDelays = new ArrayList<>();
+
+        // 多次采样
+        for (int i = 0; i < sampleCount; i++) {
+            long t1 = System.nanoTime();
+            Map<String, Long> resp = restTemplate.getForObject(serverUrl + "/time/ntp", Map.class);
+            long t2 = System.nanoTime();
+
+            long rttNano = t2 - t1;
+            long oneWayDelayMillis = rttNano / 1_000_000 / 2; // 转换成毫秒
+            oneWayDelays.add(oneWayDelayMillis);
+
+            Thread.sleep(50);
+        }
+
+        // 取最小延迟作为估算
+        long estimatedDelay = oneWayDelays.stream().min(Long::compare).orElse(0L);
+
+        // 用单调时钟计算延时
+        long nowNano = System.nanoTime();
+        long delayMillis = effectAt - (nowNano / 1_000_000 + estimatedDelay);
+        if (delayMillis < 0) delayMillis = 0;
+
+        scheduler.schedule(() -> {
+            long actualTime = System.currentTimeMillis();
+            System.out.printf("[%s] Scheduled delay: %d ms, setting system time to %d, actual exec time %d%n",
+                    clientId, delayMillis, targetClientTime, actualTime);
+
+            // 模拟修改系统时间
+            // setSystemTime(targetClientTime);
+        }, delayMillis, TimeUnit.MILLISECONDS);
+    }
+}

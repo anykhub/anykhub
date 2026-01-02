@@ -5,6 +5,8 @@ import com.example.demo.entity.Facility;
 import com.example.demo.entity.MilitaryStandard;
 import com.example.demo.entity.Tag;
 import com.example.demo.service.FacilityService;
+import com.example.demo.vo.CountryFacilityTree;
+import com.example.demo.vo.FacilityTreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -181,6 +183,38 @@ public class FacilityController {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
         result.put("message", success ? "解绑成功" : "解绑失败");
+        return result;
+    }
+
+    // ==================== 设施树查询 ====================
+
+    /**
+     * 按国家查询设施树
+     * 返回按国家分组的树形结构，包含设施层级、军标资源、标签信息
+     */
+    @GetMapping("/tree/by-country")
+    public Map<String, Object> getFacilityTreeByCountry() {
+        List<CountryFacilityTree> tree = facilityService.getFacilityTreeByCountry();
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("code", 200);
+        result.put("message", "查询成功");
+        result.put("data", tree);
+        return result;
+    }
+
+    /**
+     * 查询设施树（从指定父节点开始）
+     * 
+     * @param parentId 父设施ID，为空则查询所有一级设施
+     */
+    @GetMapping("/tree")
+    public Map<String, Object> getFacilityTree(
+            @RequestParam(required = false) Long parentId) {
+        List<FacilityTreeNode> tree = facilityService.buildFacilityTree(parentId);
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("code", 200);
+        result.put("message", "查询成功");
+        result.put("data", tree);
         return result;
     }
 }

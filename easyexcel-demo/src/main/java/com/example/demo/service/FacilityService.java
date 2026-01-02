@@ -41,4 +41,14 @@ public interface FacilityService extends IService<Facility> {
      * 解绑标签
      */
     boolean unbindTags(Long facilityId, List<Long> tagIds);
+
+    /**
+     * 构建设施树（包含军标和标签信息）
+     */
+    List<com.example.demo.vo.FacilityTreeNode> buildFacilityTree(Long parentId);
+
+    /**
+     * 按国家查询设施树
+     */
+    List<com.example.demo.vo.CountryFacilityTree> getFacilityTreeByCountry();
 }

@@ -51,4 +51,22 @@ public interface FacilityService extends IService<Facility> {
      * 按国家查询设施树
      */
     List<com.example.demo.vo.CountryFacilityTree> getFacilityTreeByCountry();
+
+    /**
+     * 导出设施数据到 Excel（多 Sheet）
+     * 
+     * @param outputStream 输出流
+     * @param countryCode  国家代码（可选）
+     */
+    void exportFacilityData(java.io.OutputStream outputStream, String countryCode) throws java.io.IOException;
+
+    /**
+     * 导出指定设施及其子设施数据到 Excel
+     * 
+     * @param outputStream    输出流
+     * @param facilityId      设施ID
+     * @param includeChildren 是否包含子设施
+     */
+    void exportFacilityDataById(java.io.OutputStream outputStream, Long facilityId, boolean includeChildren)
+            throws java.io.IOException;
 }

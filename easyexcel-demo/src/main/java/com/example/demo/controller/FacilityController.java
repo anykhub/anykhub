@@ -8,15 +8,7 @@ import com.example.demo.service.FacilityService;
 import com.example.demo.vo.CountryFacilityTree;
 import com.example.demo.vo.FacilityTreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -216,5 +208,63 @@ public class FacilityController {
         result.put("message", "查询成功");
         result.put("data", tree);
         return result;
+    }
+
+    // ==================== 数据导出 ====================
+
+    /**
+     * 导出设施数据（多Sheet Excel）
+     * 
+     * @param countryCode 国家代码（可选，用于筛选）
+     * @param response    HTTP响应
+     */
+    @GetMapping("/export")
+    public void exportFacilityData(
+            @RequestParam(required = false) String countryCode,
+            javax.servlet.http.HttpServletResponse response) throws java.io.IOException {
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+
+        // 生成文件名
+        String fileName = "设施数据备份_" + java.time.LocalDate.now();
+        if (countryCode != null && !countryCode.trim().isEmpty()) {
+            fileName += "_" + countryCode;
+        }
+        fileName = java.net.URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
+
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+        facilityService.exportFacilityData(response.getOutputStream(), countryCode);
+    }
+
+    /**
+     * 导出指定设施数据（多Sheet Excel）
+     * 
+     * @param facilityId      设施ID
+     * @param includeChildren 是否包含子设施（默认true）
+     * @param response        HTTP响应
+     */
+    @GetMapping("/export/{facilityId}")
+    public void exportFacilityDataById(
+            @PathVariable Long facilityId,
+            @RequestParam(required = false, defaultValue = "true") Boolean includeChildren,
+            javax.servlet.http.HttpServletResponse response) throws java.io.IOException {
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");
+
+        // 生成文件名
+        Facility facility = facilityService.getById(facilityId);
+        String fileName = "设施数据_" + (facility != null ? facility.getFacilityCode() : facilityId) + "_"
+                + java.time.LocalDate.now();
+        if (includeChildren) {
+            fileName += "_含子设施";
+        }
+        fileName = java.net.URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
+
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+        facilityService.exportFacilityDataById(response.getOutputStream(), facilityId, includeChildren);
     }
 }

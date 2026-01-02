@@ -284,4 +284,277 @@ public class FacilityServiceImpl extends ServiceImpl<FacilityMapper, Facility> i
                 return countryCode;
         }
     }
+
+    @Override
+    public void exportFacilityData(java.io.OutputStream outputStream, String countryCode) throws java.io.IOException {
+        // 1. 查询设施数据
+        QueryWrapper<Facility> facilityQuery = new QueryWrapper<Facility>();
+        facilityQuery.eq("DEL_FLAG", "0");
+        if (countryCode != null && !countryCode.trim().isEmpty()) {
+            facilityQuery.eq("COUNTRY_CODE", countryCode);
+        }
+        facilityQuery.orderByAsc("COUNTRY_CODE", "FACILITY_CODE");
+        List<Facility> facilities = baseMapper.selectList(facilityQuery);
+
+        // 2. 转换为导出VO
+        List<com.example.demo.vo.FacilityExportVO> facilityVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            com.example.demo.vo.FacilityExportVO vo = new com.example.demo.vo.FacilityExportVO();
+            vo.setFacilityId(facility.getFacilityId());
+            vo.setFacilityCode(facility.getFacilityCode());
+            vo.setFacilityName(facility.getFacilityName());
+            vo.setParentFacilityId(facility.getParentFacilityId());
+
+            // 设置父设施名称
+            if (facility.getParentFacilityId() != null) {
+                Facility parent = baseMapper.selectById(facility.getParentFacilityId());
+                if (parent != null) {
+                    vo.setParentFacilityName(parent.getFacilityName());
+                }
+            }
+
+            vo.setTabId(facility.getTabId());
+            vo.setCountryCode(facility.getCountryCode());
+            vo.setCountryName(getCountryName(facility.getCountryCode()));
+            vo.setFacilityType(facility.getFacilityType());
+            vo.setLocation(facility.getLocation());
+            vo.setLatitude(facility.getLatitude());
+            vo.setLongitude(facility.getLongitude());
+            vo.setArea(facility.getArea());
+            vo.setCapacity(facility.getCapacity());
+            vo.setDescription(facility.getDescription());
+            vo.setStatus(facility.getStatus());
+            vo.setCreateBy(facility.getCreateBy());
+            vo.setCreateTime(facility.getCreateTime());
+            vo.setRemark(facility.getRemark());
+
+            facilityVOs.add(vo);
+        }
+
+        // 3. 查询军标关联数据
+        List<com.example.demo.vo.FacilityMSExportVO> fmsVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            List<MilitaryStandard> msList = baseMapper.selectMilitaryStandardsByFacilityId(facility.getFacilityId());
+            for (MilitaryStandard ms : msList) {
+                com.example.demo.vo.FacilityMSExportVO fmsVO = new com.example.demo.vo.FacilityMSExportVO();
+                fmsVO.setFacilityCode(facility.getFacilityCode());
+                fmsVO.setFacilityName(facility.getFacilityName());
+                fmsVO.setMsCode(ms.getMsCode());
+                fmsVO.setMsName(ms.getMsName());
+                fmsVO.setMsCategory(ms.getMsCategory());
+
+                // 查询关联时间
+                QueryWrapper<FacilityMilitaryStandard> fmsQuery = new QueryWrapper<FacilityMilitaryStandard>();
+                fmsQuery.eq("FACILITY_ID", facility.getFacilityId());
+                fmsQuery.eq("MS_ID", ms.getMsId());
+                FacilityMilitaryStandard fms = facilityMilitaryStandardMapper.selectOne(fmsQuery);
+                if (fms != null) {
+                    fmsVO.setCreateTime(fms.getCreateTime());
+                }
+
+                fmsVOs.add(fmsVO);
+            }
+        }
+
+        // 4. 查询标签关联数据
+        List<com.example.demo.vo.FacilityTagExportVO> ftVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            List<Tag> tags = baseMapper.selectTagsByFacilityId(facility.getFacilityId());
+            for (Tag tag : tags) {
+                com.example.demo.vo.FacilityTagExportVO ftVO = new com.example.demo.vo.FacilityTagExportVO();
+                ftVO.setFacilityCode(facility.getFacilityCode());
+                ftVO.setFacilityName(facility.getFacilityName());
+                ftVO.setTagCode(tag.getTagCode());
+                ftVO.setTagName(tag.getTagName());
+                ftVO.setTagColor(tag.getTagColor());
+                ftVO.setTagType(tag.getTagType());
+
+                // 查询关联时间
+                QueryWrapper<FacilityTag> ftQuery = new QueryWrapper<FacilityTag>();
+                ftQuery.eq("FACILITY_ID", facility.getFacilityId());
+                ftQuery.eq("TAG_ID", tag.getTagId());
+                FacilityTag ft = facilityTagMapper.selectOne(ftQuery);
+                if (ft != null) {
+                    ftVO.setCreateTime(ft.getCreateTime());
+                }
+
+                ftVOs.add(ftVO);
+            }
+        }
+
+        // 5. 使用 EasyExcel 写入多个 Sheet
+        com.alibaba.excel.ExcelWriter excelWriter = com.alibaba.excel.EasyExcel.write(outputStream).build();
+
+        // Sheet 1: 设施信息
+        com.alibaba.excel.write.metadata.WriteSheet sheet1 = com.alibaba.excel.EasyExcel
+                .writerSheet(0, "设施信息")
+                .head(com.example.demo.vo.FacilityExportVO.class)
+                .build();
+        excelWriter.write(facilityVOs, sheet1);
+
+        // Sheet 2: 军标关联
+        com.alibaba.excel.write.metadata.WriteSheet sheet2 = com.alibaba.excel.EasyExcel
+                .writerSheet(1, "军标关联")
+                .head(com.example.demo.vo.FacilityMSExportVO.class)
+                .build();
+        excelWriter.write(fmsVOs, sheet2);
+
+        // Sheet 3: 标签关联
+        com.alibaba.excel.write.metadata.WriteSheet sheet3 = com.alibaba.excel.EasyExcel
+                .writerSheet(2, "标签关联")
+                .head(com.example.demo.vo.FacilityTagExportVO.class)
+                .build();
+        excelWriter.write(ftVOs, sheet3);
+
+        // 关闭写入器
+        excelWriter.finish();
+    }
+
+    @Override
+    public void exportFacilityDataById(java.io.OutputStream outputStream, Long facilityId, boolean includeChildren)
+            throws java.io.IOException {
+        // 1. 查询指定设施
+        Facility rootFacility = baseMapper.selectById(facilityId);
+        if (rootFacility == null) {
+            throw new IllegalArgumentException("设施不存在: " + facilityId);
+        }
+
+        // 2. 收集所有需要导出的设施（包含子设施）
+        List<Facility> facilities = new ArrayList<>();
+        facilities.add(rootFacility);
+
+        if (includeChildren) {
+            // 递归收集所有子设施
+            collectChildFacilities(facilityId, facilities);
+        }
+
+        // 3. 转换为导出VO
+        List<com.example.demo.vo.FacilityExportVO> facilityVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            com.example.demo.vo.FacilityExportVO vo = new com.example.demo.vo.FacilityExportVO();
+            vo.setFacilityId(facility.getFacilityId());
+            vo.setFacilityCode(facility.getFacilityCode());
+            vo.setFacilityName(facility.getFacilityName());
+            vo.setParentFacilityId(facility.getParentFacilityId());
+
+            // 设置父设施名称
+            if (facility.getParentFacilityId() != null) {
+                Facility parent = baseMapper.selectById(facility.getParentFacilityId());
+                if (parent != null) {
+                    vo.setParentFacilityName(parent.getFacilityName());
+                }
+            }
+
+            vo.setTabId(facility.getTabId());
+            vo.setCountryCode(facility.getCountryCode());
+            vo.setCountryName(getCountryName(facility.getCountryCode()));
+            vo.setFacilityType(facility.getFacilityType());
+            vo.setLocation(facility.getLocation());
+            vo.setLatitude(facility.getLatitude());
+            vo.setLongitude(facility.getLongitude());
+            vo.setArea(facility.getArea());
+            vo.setCapacity(facility.getCapacity());
+            vo.setDescription(facility.getDescription());
+            vo.setStatus(facility.getStatus());
+            vo.setCreateBy(facility.getCreateBy());
+            vo.setCreateTime(facility.getCreateTime());
+            vo.setRemark(facility.getRemark());
+
+            facilityVOs.add(vo);
+        }
+
+        // 4. 查询军标关联数据
+        List<com.example.demo.vo.FacilityMSExportVO> fmsVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            List<MilitaryStandard> msList = baseMapper.selectMilitaryStandardsByFacilityId(facility.getFacilityId());
+            for (MilitaryStandard ms : msList) {
+                com.example.demo.vo.FacilityMSExportVO fmsVO = new com.example.demo.vo.FacilityMSExportVO();
+                fmsVO.setFacilityCode(facility.getFacilityCode());
+                fmsVO.setFacilityName(facility.getFacilityName());
+                fmsVO.setMsCode(ms.getMsCode());
+                fmsVO.setMsName(ms.getMsName());
+                fmsVO.setMsCategory(ms.getMsCategory());
+
+                // 查询关联时间
+                QueryWrapper<FacilityMilitaryStandard> fmsQuery = new QueryWrapper<FacilityMilitaryStandard>();
+                fmsQuery.eq("FACILITY_ID", facility.getFacilityId());
+                fmsQuery.eq("MS_ID", ms.getMsId());
+                FacilityMilitaryStandard fms = facilityMilitaryStandardMapper.selectOne(fmsQuery);
+                if (fms != null) {
+                    fmsVO.setCreateTime(fms.getCreateTime());
+                }
+
+                fmsVOs.add(fmsVO);
+            }
+        }
+
+        // 5. 查询标签关联数据
+        List<com.example.demo.vo.FacilityTagExportVO> ftVOs = new ArrayList<>();
+        for (Facility facility : facilities) {
+            List<Tag> tags = baseMapper.selectTagsByFacilityId(facility.getFacilityId());
+            for (Tag tag : tags) {
+                com.example.demo.vo.FacilityTagExportVO ftVO = new com.example.demo.vo.FacilityTagExportVO();
+                ftVO.setFacilityCode(facility.getFacilityCode());
+                ftVO.setFacilityName(facility.getFacilityName());
+                ftVO.setTagCode(tag.getTagCode());
+                ftVO.setTagName(tag.getTagName());
+                ftVO.setTagColor(tag.getTagColor());
+                ftVO.setTagType(tag.getTagType());
+
+                // 查询关联时间
+                QueryWrapper<FacilityTag> ftQuery = new QueryWrapper<FacilityTag>();
+                ftQuery.eq("FACILITY_ID", facility.getFacilityId());
+                ftQuery.eq("TAG_ID", tag.getTagId());
+                FacilityTag ft = facilityTagMapper.selectOne(ftQuery);
+                if (ft != null) {
+                    ftVO.setCreateTime(ft.getCreateTime());
+                }
+
+                ftVOs.add(ftVO);
+            }
+        }
+
+        // 6. 使用 EasyExcel 写入多个 Sheet
+        com.alibaba.excel.ExcelWriter excelWriter = com.alibaba.excel.EasyExcel.write(outputStream).build();
+
+        // Sheet 1: 设施信息
+        com.alibaba.excel.write.metadata.WriteSheet sheet1 = com.alibaba.excel.EasyExcel
+                .writerSheet(0, "设施信息")
+                .head(com.example.demo.vo.FacilityExportVO.class)
+                .build();
+        excelWriter.write(facilityVOs, sheet1);
+
+        // Sheet 2: 军标关联
+        com.alibaba.excel.write.metadata.WriteSheet sheet2 = com.alibaba.excel.EasyExcel
+                .writerSheet(1, "军标关联")
+                .head(com.example.demo.vo.FacilityMSExportVO.class)
+                .build();
+        excelWriter.write(fmsVOs, sheet2);
+
+        // Sheet 3: 标签关联
+        com.alibaba.excel.write.metadata.WriteSheet sheet3 = com.alibaba.excel.EasyExcel
+                .writerSheet(2, "标签关联")
+                .head(com.example.demo.vo.FacilityTagExportVO.class)
+                .build();
+        excelWriter.write(ftVOs, sheet3);
+
+        // 关闭写入器
+        excelWriter.finish();
+    }
+
+    /**
+     * 递归收集所有子设施
+     */
+    private void collectChildFacilities(Long parentId, List<Facility> result) {
+        QueryWrapper<Facility> queryWrapper = new QueryWrapper<Facility>();
+        queryWrapper.eq("PARENT_FACILITY_ID", parentId);
+        queryWrapper.eq("DEL_FLAG", "0");
+        List<Facility> children = baseMapper.selectList(queryWrapper);
+
+        for (Facility child : children) {
+            result.add(child);
+            // 递归收集子设施的子设施
+            collectChildFacilities(child.getFacilityId(), result);
+        }
+    }
 }

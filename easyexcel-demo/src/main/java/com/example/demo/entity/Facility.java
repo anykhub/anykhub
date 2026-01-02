@@ -39,10 +39,22 @@ public class Facility implements Serializable {
     private String facilityName;
 
     /**
+     * 父设施ID（支持层级结构）
+     */
+    @TableField("PARENT_FACILITY_ID")
+    private Long parentFacilityId;
+
+    /**
      * 所属页签ID
      */
     @TableField("TAB_ID")
     private Long tabId;
+
+    /**
+     * 国家代码（如：CN, US, JP）
+     */
+    @TableField("COUNTRY_CODE")
+    private String countryCode;
 
     /**
      * 设施类型

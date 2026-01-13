@@ -7,6 +7,8 @@ import com.example.demo.entity.Tag;
 import com.example.demo.service.FacilityService;
 import com.example.demo.vo.CountryFacilityTree;
 import com.example.demo.vo.FacilityTreeNode;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,7 @@ import java.util.Map;
 /**
  * 设施管理 Controller
  */
+@io.swagger.v3.oas.annotations.tags.Tag(name = "设施管理", description = "设施管理相关接口，包括CRUD、关联管理、树形查询、数据导出等功能")
 @RestController
 @RequestMapping("/api/facility")
 public class FacilityController {
@@ -25,6 +28,7 @@ public class FacilityController {
     @Autowired
     private FacilityService facilityService;
 
+    @Operation(summary = "查询所有设施", description = "获取所有未删除的设施列表")
     @GetMapping("/list")
     public Map<String, Object> list() {
         List<Facility> list = facilityService.list();
@@ -35,8 +39,10 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "根据ID查询设施", description = "根据设施ID获取设施详细信息")
     @GetMapping("/{id}")
-    public Map<String, Object> getById(@PathVariable Long id) {
+    public Map<String, Object> getById(
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id) {
         Facility facility = facilityService.getById(id);
         Map<String, Object> result = new HashMap<String, Object>();
         if (facility != null) {
@@ -50,8 +56,10 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "新增设施", description = "创建一个新的设施")
     @PostMapping
-    public Map<String, Object> save(@RequestBody Facility facility) {
+    public Map<String, Object> save(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "设施信息", required = true) @RequestBody Facility facility) {
         if (facility.getStatus() == null) {
             facility.setStatus("0");
         }
@@ -69,8 +77,10 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "更新设施", description = "更新设施信息")
     @PutMapping
-    public Map<String, Object> update(@RequestBody Facility facility) {
+    public Map<String, Object> update(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "设施信息", required = true) @RequestBody Facility facility) {
         facility.setUpdateTime(new Date());
         boolean success = facilityService.updateById(facility);
         Map<String, Object> result = new HashMap<String, Object>();
@@ -79,8 +89,10 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "删除设施", description = "逻辑删除指定设施")
     @DeleteMapping("/{id}")
-    public Map<String, Object> delete(@PathVariable Long id) {
+    public Map<String, Object> delete(
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id) {
         boolean success = facilityService.removeById(id);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
@@ -88,10 +100,11 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "分页查询设施", description = "分页获取设施列表")
     @GetMapping("/page")
     public Map<String, Object> page(
-            @RequestParam(defaultValue = "1") Long current,
-            @RequestParam(defaultValue = "10") Long size) {
+            @Parameter(description = "当前页码", example = "1") @RequestParam(defaultValue = "1") Long current,
+            @Parameter(description = "每页数量", example = "10") @RequestParam(defaultValue = "10") Long size) {
         Page<Facility> page = new Page<Facility>(current, size);
         Page<Facility> facilityPage = facilityService.page(page);
 
@@ -112,8 +125,10 @@ public class FacilityController {
 
     // ==================== 军标资源关联管理 ====================
 
+    @Operation(summary = "查询设施关联的军标资源", description = "获取指定设施关联的所有军标资源")
     @GetMapping("/{id}/military-standards")
-    public Map<String, Object> getMilitaryStandards(@PathVariable Long id) {
+    public Map<String, Object> getMilitaryStandards(
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id) {
         List<MilitaryStandard> list = facilityService.getMilitaryStandardsByFacilityId(id);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", 200);
@@ -122,10 +137,11 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "绑定军标资源", description = "为设施绑定一个或多个军标资源")
     @PostMapping("/{id}/military-standards")
     public Map<String, Object> bindMilitaryStandards(
-            @PathVariable Long id,
-            @RequestBody List<Long> msIds) {
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "军标资源ID列表", required = true) @RequestBody List<Long> msIds) {
         boolean success = facilityService.bindMilitaryStandards(id, msIds);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
@@ -133,10 +149,11 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "解绑军标资源", description = "解除设施与军标资源的关联")
     @DeleteMapping("/{id}/military-standards")
     public Map<String, Object> unbindMilitaryStandards(
-            @PathVariable Long id,
-            @RequestBody List<Long> msIds) {
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "军标资源ID列表", required = true) @RequestBody List<Long> msIds) {
         boolean success = facilityService.unbindMilitaryStandards(id, msIds);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
@@ -146,8 +163,10 @@ public class FacilityController {
 
     // ==================== 标签关联管理 ====================
 
+    @Operation(summary = "查询设施关联的标签", description = "获取指定设施关联的所有标签")
     @GetMapping("/{id}/tags")
-    public Map<String, Object> getTags(@PathVariable Long id) {
+    public Map<String, Object> getTags(
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id) {
         List<Tag> list = facilityService.getTagsByFacilityId(id);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", 200);
@@ -156,10 +175,11 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "绑定标签", description = "为设施绑定一个或多个标签")
     @PostMapping("/{id}/tags")
     public Map<String, Object> bindTags(
-            @PathVariable Long id,
-            @RequestBody List<Long> tagIds) {
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "标签ID列表", required = true) @RequestBody List<Long> tagIds) {
         boolean success = facilityService.bindTags(id, tagIds);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
@@ -167,10 +187,11 @@ public class FacilityController {
         return result;
     }
 
+    @Operation(summary = "解绑标签", description = "解除设施与标签的关联")
     @DeleteMapping("/{id}/tags")
     public Map<String, Object> unbindTags(
-            @PathVariable Long id,
-            @RequestBody List<Long> tagIds) {
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "标签ID列表", required = true) @RequestBody List<Long> tagIds) {
         boolean success = facilityService.unbindTags(id, tagIds);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", success ? 200 : 500);
@@ -184,6 +205,7 @@ public class FacilityController {
      * 按国家查询设施树
      * 返回按国家分组的树形结构，包含设施层级、军标资源、标签信息
      */
+    @Operation(summary = "按国家查询设施树", description = "返回按国家分组的树形结构，包含设施层级、军标资源、标签信息")
     @GetMapping("/tree/by-country")
     public Map<String, Object> getFacilityTreeByCountry() {
         List<CountryFacilityTree> tree = facilityService.getFacilityTreeByCountry();
@@ -196,12 +218,11 @@ public class FacilityController {
 
     /**
      * 查询设施树（从指定父节点开始）
-     * 
-     * @param parentId 父设施ID，为空则查询所有一级设施
      */
+    @Operation(summary = "查询设施树", description = "从指定父节点开始查询设施树，为空则查询所有一级设施")
     @GetMapping("/tree")
     public Map<String, Object> getFacilityTree(
-            @RequestParam(required = false) Long parentId) {
+            @Parameter(description = "父设施ID，为空则查询所有一级设施", example = "1") @RequestParam(required = false) Long parentId) {
         List<FacilityTreeNode> tree = facilityService.buildFacilityTree(parentId);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("code", 200);
@@ -214,13 +235,11 @@ public class FacilityController {
 
     /**
      * 导出设施数据（多Sheet Excel）
-     * 
-     * @param countryCode 国家代码（可选，用于筛选）
-     * @param response    HTTP响应
      */
+    @Operation(summary = "导出设施数据", description = "导出设施数据到Excel文件，包含设施信息、军标关联、标签关联三个Sheet")
     @GetMapping("/export")
     public void exportFacilityData(
-            @RequestParam(required = false) String countryCode,
+            @Parameter(description = "国家代码，用于筛选导出指定国家的设施", example = "CN") @RequestParam(required = false) String countryCode,
             javax.servlet.http.HttpServletResponse response) throws java.io.IOException {
 
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -240,15 +259,12 @@ public class FacilityController {
 
     /**
      * 导出指定设施数据（多Sheet Excel）
-     * 
-     * @param facilityId      设施ID
-     * @param includeChildren 是否包含子设施（默认true）
-     * @param response        HTTP响应
      */
+    @Operation(summary = "导出指定设施数据", description = "导出指定设施及其子设施的数据到Excel文件")
     @GetMapping("/export/{facilityId}")
     public void exportFacilityDataById(
-            @PathVariable Long facilityId,
-            @RequestParam(required = false, defaultValue = "true") Boolean includeChildren,
+            @Parameter(description = "设施ID", required = true, example = "1") @PathVariable Long facilityId,
+            @Parameter(description = "是否包含子设施", example = "true") @RequestParam(required = false, defaultValue = "true") Boolean includeChildren,
             javax.servlet.http.HttpServletResponse response) throws java.io.IOException {
 
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");

@@ -1,0 +1,14 @@
+[Unit]
+Description=Apache FtpServer
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/ftpserver
+#Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+ExecStart=/usr/local/ftpserver/bin/ftpd.sh res/conf/ftpd-typical.xml
+User=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

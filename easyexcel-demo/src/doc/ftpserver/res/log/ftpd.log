@@ -1,0 +1,654 @@
+[ INFO] 2026-01-18 13:34:55,565 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:34:55 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:34:55,688 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:34:57,895 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@66480dd7
+[ INFO] 2026-01-18 13:34:57,944 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@66480dd7: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 13:34:58,447 [] [] FTP server started
+[ INFO] 2026-01-18 13:36:09,068 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:36:09 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:36:09,122 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ WARN] 2026-01-18 13:36:09,743 [] [] Ignored XML validation warning
+org.xml.sax.SAXParseException; lineNumber: 21; columnNumber: 17; schema_reference.4: 无法读取方案文档 'https://mina.apache.org/ftpserver-project/ftpserver-1.0.xsd', 原因为 1) 无法找到文档; 2) 无法读取文档; 3) 文档的根元素不是 <xsd:schema>。
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.warning(ErrorHandlerWrapper.java:99)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:392)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:306)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.reportSchemaErr(XSDHandler.java:4158)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.reportSchemaWarning(XSDHandler.java:4149)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument1(XSDHandler.java:2491)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument(XSDHandler.java:2193)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.parseSchema(XSDHandler.java:578)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaLoader.loadSchema(XMLSchemaLoader.java:610)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.findSchemaGrammar(XMLSchemaValidator.java:2448)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1769)
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:742)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:374)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:613)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3132)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:852)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:842)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:771)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.springframework.beans.factory.xml.DefaultDocumentLoader.loadDocument(DefaultDocumentLoader.java:75)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:396)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:342)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:143)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:178)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:149)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:212)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:113)
+	at org.springframework.context.support.AbstractXmlApplicationContext.loadBeanDefinitions(AbstractXmlApplicationContext.java:80)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:423)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:353)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at org.apache.ftpserver.main.CommandLine.getConfiguration(CommandLine.java:132)
+	at org.apache.ftpserver.main.CommandLine.main(CommandLine.java:56)
+Caused by: java.net.UnknownHostException: mina.apache.org
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:681)
+	at sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:173)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:180)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)
+	at sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:264)
+	at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:367)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:191)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1162)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1056)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:177)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1570)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1498)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:268)
+	at com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:647)
+	at com.sun.org.apache.xerces.internal.impl.XMLVersionDetector.determineDocVersion(XMLVersionDetector.java:148)
+	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig.parse(SchemaParsingConfig.java:583)
+	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaParsingConfig.parse(SchemaParsingConfig.java:686)
+	at com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaDOMParser.parse(SchemaDOMParser.java:530)
+	at com.sun.org.apache.xerces.internal.impl.xs.traversers.XSDHandler.getSchemaDocument(XSDHandler.java:2181)
+	... 34 more
+[ INFO] 2026-01-18 13:38:36,523 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:38:36 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:38:36,601 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:41:01,990 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:41:01 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:41:02,068 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:47:54,440 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:47:54 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:47:54,522 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:47:54,961 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60
+[ INFO] 2026-01-18 13:47:54,986 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 13:47:55,300 [] [] FTP server started
+[ INFO] 2026-01-18 13:48:09,874 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:48:09 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:48:09,954 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:48:10,387 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60
+[ INFO] 2026-01-18 13:48:10,409 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 13:48:10,708 [] [] FTP server started
+[ INFO] 2026-01-18 13:48:21,555 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 13:48:21 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 13:48:21,639 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 13:48:22,074 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60
+[ INFO] 2026-01-18 13:48:22,100 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@880ec60: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 13:48:22,391 [] [] FTP server started
+[ INFO] 2026-01-18 14:10:08,849 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:10:08 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:10:08,932 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:12:43,648 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:12:43 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:12:43,775 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:15:48,570 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:15:48 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:15:48,676 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:16:50,234 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:16:50 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:16:50,292 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:18:26,257 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:18:26 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:18:26,326 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:26:18,109 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:26:18 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:26:18,205 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:28:06,838 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:28:06 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:28:06,929 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:28:07,500 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14
+[ INFO] 2026-01-18 14:28:07,561 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 14:28:08,205 [] [] FTP server started
+[ INFO] 2026-01-18 14:31:56,970 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:31:56,980 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:31:57,014 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:31:57,028 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:31:57,033 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:31:57,035 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:31:57,039 [admin] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:31:57,540 [admin] [192.168.31.19] Login failure - admin
+[ INFO] 2026-01-18 14:31:57,544 [admin] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:32:19,237 [admin] [192.168.31.19] RECEIVED: USER ftp
+[ INFO] 2026-01-18 14:32:19,238 [ftp] [192.168.31.19] SENT: 331 User name okay, need password for ftp.
+
+[ INFO] 2026-01-18 14:32:19,240 [ftp] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:32:19,249 [ftp] [192.168.31.19] Login success - ftp
+[ INFO] 2026-01-18 14:32:19,249 [ftp] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:32:19,250 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:32:19,252 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:32:19,255 [ftp] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:32:19,256 [ftp] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:32:19,257 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:32:19,258 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:32:19,258 [ftp] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:32:19,260 [ftp] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:32:19,260 [ftp] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:32:19,263 [ftp] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,165,235)
+
+[ INFO] 2026-01-18 14:32:19,267 [ftp] [192.168.31.19] RECEIVED: LIST
+[ WARN] 2026-01-18 14:32:19,274 [ftp] [192.168.31.19] Releasing unreserved passive port: 42475
+[ INFO] 2026-01-18 14:32:19,274 [ftp] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:32:19,274 [ftp] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:32:40,909 [ftp] [192.168.31.19] CLOSED
+[ INFO] 2026-01-18 14:33:10,755 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:33:10,755 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:33:10,757 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:33:10,764 [] [192.168.31.19] RECEIVED: USER admi
+[ INFO] 2026-01-18 14:33:10,766 [admi] [192.168.31.19] SENT: 331 User name okay, need password for admi.
+
+[ INFO] 2026-01-18 14:33:10,770 [admi] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:33:10,770 [admi] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:33:11,270 [admi] [192.168.31.19] Login failure - admi
+[ INFO] 2026-01-18 14:33:11,273 [admi] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:33:18,578 [admi] [192.168.31.19] RECEIVED: USER anonymous
+[ INFO] 2026-01-18 14:33:18,579 [anonymous] [192.168.31.19] SENT: 331 Guest login okay, send your complete e-mail address as password.
+
+[ INFO] 2026-01-18 14:33:18,581 [anonymous] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:33:18,582 [anonymous] [192.168.31.19] Anonymous login success - anonymous
+[ INFO] 2026-01-18 14:33:18,583 [anonymous] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:33:18,586 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:33:18,587 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:33:18,590 [anonymous] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:33:18,591 [anonymous] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:33:18,592 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:33:18,593 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:33:18,593 [anonymous] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:33:18,594 [anonymous] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:33:18,594 [anonymous] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:33:18,595 [anonymous] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,152,171)
+
+[ INFO] 2026-01-18 14:33:18,598 [anonymous] [192.168.31.19] RECEIVED: LIST
+[ WARN] 2026-01-18 14:33:18,599 [anonymous] [192.168.31.19] Releasing unreserved passive port: 39083
+[ INFO] 2026-01-18 14:33:18,599 [anonymous] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:33:18,600 [anonymous] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:34:18,647 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:34:18,649 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:35:18,647 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:35:18,650 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:36:18,654 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:36:18,655 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:41:19,052 [anonymous] [192.168.31.19] IDLE
+[ INFO] 2026-01-18 14:41:19,053 [anonymous] [192.168.31.19] Session idle, closing
+[ INFO] 2026-01-18 14:41:19,055 [anonymous] [192.168.31.19] CLOSED
+[ INFO] 2026-01-18 14:41:39,563 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:41:39,565 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:41:39,570 [anonymous] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:41:39,580 [] [192.168.31.19] RECEIVED: USER anonymous
+[ INFO] 2026-01-18 14:41:39,582 [anonymous] [192.168.31.19] SENT: 331 Guest login okay, send your complete e-mail address as password.
+
+[ INFO] 2026-01-18 14:41:39,584 [anonymous] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:41:39,585 [anonymous] [192.168.31.19] Anonymous login success - anonymous
+[ INFO] 2026-01-18 14:41:39,586 [anonymous] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:41:39,586 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:41:39,588 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:41:39,599 [anonymous] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:41:39,600 [anonymous] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:41:39,601 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:41:39,603 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:41:39,604 [anonymous] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:41:39,605 [anonymous] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:41:39,609 [anonymous] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:41:39,612 [anonymous] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,141,114)
+
+[ INFO] 2026-01-18 14:44:59,669 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:44:59,672 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:44:59,674 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:44:59,677 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:44:59,678 [anonymous] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:44:59,680 [anonymous] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:44:59,681 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:44:59,682 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:45:01,828 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:45:01,828 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:45:01,831 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:45:01,835 [] [192.168.31.19] RECEIVED: USER anonymous
+[ INFO] 2026-01-18 14:45:01,837 [anonymous] [192.168.31.19] SENT: 331 Guest login okay, send your complete e-mail address as password.
+
+[ INFO] 2026-01-18 14:45:01,838 [anonymous] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:45:01,838 [anonymous] [192.168.31.19] Anonymous login success - anonymous
+[ INFO] 2026-01-18 14:45:01,839 [anonymous] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:45:01,840 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:45:01,841 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:45:01,843 [anonymous] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:45:01,846 [anonymous] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:45:01,848 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:45:01,849 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:45:01,854 [anonymous] [192.168.31.19] RECEIVED: TYPE I
+[ INFO] 2026-01-18 14:45:01,855 [anonymous] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:45:01,873 [anonymous] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:45:01,874 [anonymous] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,133,210)
+
+[ INFO] 2026-01-18 14:45:22,918 [anonymous] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:45:22,920 [anonymous] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:45:22,925 [anonymous] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:45:22,925 [anonymous] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:45:22,926 [anonymous] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:45:22,928 [anonymous] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:45:22,929 [anonymous] [192.168.31.19] RECEIVED: PASV
+[ WARN] 2026-01-18 14:45:22,929 [anonymous] [192.168.31.19] Releasing unreserved passive port: 36210
+[ INFO] 2026-01-18 14:45:22,930 [anonymous] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,133,122)
+
+[ INFO] 2026-01-18 14:45:26,293 [anonymous] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:45:26,294 [anonymous] [192.168.31.19] Releasing unreserved passive port: 34170
+[ INFO] 2026-01-18 14:45:26,300 [anonymous] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:45:26,300 [anonymous] [192.168.31.19] Releasing unreserved passive port: 34258
+[ INFO] 2026-01-18 14:45:51,083 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:45:51,083 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:45:51,084 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:45:51,086 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:45:51,087 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:45:51,089 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:45:51,089 [admin] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:45:51,590 [admin] [192.168.31.19] Login failure - admin
+[ INFO] 2026-01-18 14:45:51,592 [admin] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:46:05,017 [admin] [192.168.31.19] RECEIVED: USER ftp
+[ INFO] 2026-01-18 14:46:05,018 [ftp] [192.168.31.19] SENT: 331 User name okay, need password for ftp.
+
+[ INFO] 2026-01-18 14:46:05,020 [ftp] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:46:05,020 [ftp] [192.168.31.19] Login success - ftp
+[ INFO] 2026-01-18 14:46:05,021 [ftp] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:46:05,022 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:46:05,022 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:46:05,029 [ftp] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:46:05,030 [ftp] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:46:05,033 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:46:05,035 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:46:05,036 [ftp] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:46:05,036 [ftp] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:46:05,037 [ftp] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:46:05,039 [ftp] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,179,20)
+
+[ INFO] 2026-01-18 14:46:26,084 [ftp] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:46:26,089 [ftp] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:46:26,092 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:46:26,093 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:46:26,099 [ftp] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:46:26,101 [ftp] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:46:26,108 [ftp] [192.168.31.19] RECEIVED: PASV
+[ WARN] 2026-01-18 14:46:26,108 [ftp] [192.168.31.19] Releasing unreserved passive port: 45844
+[ INFO] 2026-01-18 14:46:26,110 [ftp] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,132,182)
+
+[ INFO] 2026-01-18 14:47:16,825 [ftp] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:47:16,827 [ftp] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:47:16,829 [ftp] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:47:16,830 [ftp] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:47:29,890 [ftp] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:47:29,891 [ftp] [192.168.31.19] Releasing unreserved passive port: 33974
+[ INFO] 2026-01-18 14:47:42,690 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:47:42,691 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:47:42,692 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:47:42,739 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:47:42,740 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:47:42,744 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:47:42,744 [admin] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:47:43,245 [admin] [192.168.31.19] Login failure - admin
+[ INFO] 2026-01-18 14:47:43,246 [admin] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:47:50,042 [admin] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:47:50,043 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:47:50,046 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:47:50,046 [admin] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:47:50,547 [admin] [192.168.31.19] Login failure - admin
+[ INFO] 2026-01-18 14:47:50,549 [admin] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:48:03,510 [admin] [192.168.31.19] RECEIVED: USER ftp
+[ INFO] 2026-01-18 14:48:03,512 [ftp] [192.168.31.19] SENT: 331 User name okay, need password for ftp.
+
+[ INFO] 2026-01-18 14:48:03,513 [ftp] [192.168.31.19] RECEIVED: PASS *****
+[ WARN] 2026-01-18 14:48:03,514 [ftp] [192.168.31.19] User failed to log in
+[ WARN] 2026-01-18 14:48:04,014 [ftp] [192.168.31.19] Login failure - ftp
+[ WARN] 2026-01-18 14:48:04,015 [ftp] [192.168.31.19] User exceeded the number of allowed failed logins, session will be closed
+[ INFO] 2026-01-18 14:48:04,020 [ftp] [192.168.31.19] SENT: 530 Authentication failed.
+
+[ INFO] 2026-01-18 14:48:04,020 [ftp] [192.168.31.19] CLOSED
+[ INFO] 2026-01-18 14:48:55,980 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:48:55 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:48:56,061 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:48:56,476 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14
+[ INFO] 2026-01-18 14:48:56,498 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 14:48:56,759 [] [] FTP server started
+[ INFO] 2026-01-18 14:49:36,778 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:49:36,785 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:49:36,800 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:49:36,805 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:49:36,809 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:49:36,811 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:49:36,818 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:49:36,819 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:49:36,820 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:49:36,824 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:49:36,834 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:49:36,837 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:49:36,838 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:49:36,839 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:49:36,840 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:49:36,842 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:49:36,844 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:49:36,852 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,155,76)
+
+[ INFO] 2026-01-18 14:49:36,862 [admin] [192.168.31.19] RECEIVED: LIST
+[ WARN] 2026-01-18 14:49:36,872 [admin] [192.168.31.19] Releasing unreserved passive port: 39756
+[ INFO] 2026-01-18 14:49:36,873 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:49:36,873 [admin] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:49:42,477 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:49:42,478 [admin] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:49:42,479 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:49:42,482 [admin] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:49:42,483 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:49:42,484 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:49:42,485 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:49:42,486 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:49:42,486 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:49:42,487 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:49:42,489 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:49:42,491 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:49:42,491 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:49:42,493 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:49:42,496 [admin] [192.168.31.19] RECEIVED: TYPE I
+[ INFO] 2026-01-18 14:49:42,497 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:49:42,498 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:49:42,500 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,136,239)
+
+[ INFO] 2026-01-18 14:49:42,525 [admin] [192.168.31.19] RECEIVED: STOR 提示词.txt
+[ INFO] 2026-01-18 14:49:42,541 [admin] [192.168.31.19] File uploaded /提示词.txt
+[ WARN] 2026-01-18 14:49:42,542 [admin] [192.168.31.19] Releasing unreserved passive port: 35055
+[ INFO] 2026-01-18 14:49:42,542 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:49:42,542 [admin] [192.168.31.19] SENT: 226 Transfer complete.
+
+[ INFO] 2026-01-18 14:49:42,585 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:49:42,588 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:49:42,590 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:49:42,591 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:49:42,597 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:49:42,599 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:49:42,600 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:49:42,603 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,137,79)
+
+[ INFO] 2026-01-18 14:49:42,612 [admin] [192.168.31.19] RECEIVED: LIST
+[ WARN] 2026-01-18 14:49:42,615 [admin] [192.168.31.19] Releasing unreserved passive port: 35151
+[ INFO] 2026-01-18 14:49:42,615 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:49:42,615 [admin] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:50:42,692 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:50:42,695 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:05,385 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:51:05,387 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:51:05,388 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:51:05,389 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:05,394 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:51:05,396 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,179,20)
+
+[ INFO] 2026-01-18 14:51:22,833 [admin] [192.168.31.19] CLOSED
+[ INFO] 2026-01-18 14:51:22,837 [admin] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:51:22,840 [admin] [192.168.31.19] Releasing unreserved passive port: 45844
+[ INFO] 2026-01-18 14:51:23,613 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:51:23 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:51:23,676 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:51:24,082 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14
+[ INFO] 2026-01-18 14:51:24,098 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 14:51:24,348 [] [] FTP server started
+[ INFO] 2026-01-18 14:51:32,907 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:51:32,914 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:51:32,930 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:51:32,933 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:51:32,938 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:51:32,942 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:51:32,948 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:51:32,949 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:51:32,951 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:51:32,956 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:32,969 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:51:32,971 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:51:32,972 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:51:32,974 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:32,975 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:51:32,978 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:51:32,978 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:51:32,984 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,156,165)
+
+[ INFO] 2026-01-18 14:51:42,245 [admin] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:51:42,245 [admin] [192.168.31.19] Releasing unreserved passive port: 40101
+[ INFO] 2026-01-18 14:51:51,304 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:51:51,306 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:51:51,312 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:51:51,321 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:51:51,322 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:51:51,326 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:51:51,326 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:51:51,327 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:51:51,329 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:51:51,330 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:51,334 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:51:51,335 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:51:51,336 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:51:51,338 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:51:51,340 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:51:51,342 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:51:51,346 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:51:51,348 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,142,108)
+
+[ INFO] 2026-01-18 14:52:12,445 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:52:12,446 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:52:12,451 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:52:12,453 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:52:12,454 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:52:12,456 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:52:12,460 [admin] [192.168.31.19] RECEIVED: PASV
+[ WARN] 2026-01-18 14:52:12,461 [admin] [192.168.31.19] Releasing unreserved passive port: 36460
+[ INFO] 2026-01-18 14:52:12,463 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,173,155)
+
+[ INFO] 2026-01-18 14:54:02,880 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:54:02,882 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:54:02,884 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:54:02,885 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:54:02,890 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:54:02,891 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:03,416 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:03,418 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:10,323 [admin] [192.168.31.19] CLOSED
+[ WARN] 2026-01-18 14:55:10,323 [admin] [192.168.31.19] Releasing unreserved passive port: 44443
+[ INFO] 2026-01-18 14:55:10,988 [] [] Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b: display name [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]; startup date [Sun Jan 18 14:55:10 CST 2026]; root of context hierarchy
+[ INFO] 2026-01-18 14:55:11,066 [] [] Loading XML bean definitions from file [/usr/local/ftpserver/res/conf/ftpd-typical.xml]
+[ INFO] 2026-01-18 14:55:11,536 [] [] Bean factory for application context [org.springframework.context.support.FileSystemXmlApplicationContext@5b80350b]: org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14
+[ INFO] 2026-01-18 14:55:11,551 [] [] Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@39ba5a14: defining beans [org.apache.ftpserver.listener.ListenerFactory#0,org.apache.ftpserver.usermanager.PropertiesUserManagerFactory#0,org.apache.ftpserver.FtpServerFactory#0,myServer]; root of factory hierarchy
+[ INFO] 2026-01-18 14:55:11,855 [] [] FTP server started
+[ INFO] 2026-01-18 14:55:45,341 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:55:45,348 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:55:45,366 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:55:45,372 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:55:45,376 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:55:45,378 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:55:45,384 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:55:45,385 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:55:45,394 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:45,399 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:45,405 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:55:45,408 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:55:45,409 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:45,411 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:45,412 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:55:45,415 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:55:45,419 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:55:45,425 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,195,83)
+
+[ INFO] 2026-01-18 14:55:45,439 [admin] [192.168.31.19] RECEIVED: LIST
+[ INFO] 2026-01-18 14:55:45,453 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:55:45,454 [admin] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:55:48,691 [] [192.168.31.19] CREATED
+[ INFO] 2026-01-18 14:55:48,692 [] [192.168.31.19] OPENED
+[ INFO] 2026-01-18 14:55:48,695 [] [192.168.31.19] SENT: 220 Service ready for new user.
+
+[ INFO] 2026-01-18 14:55:48,697 [] [192.168.31.19] RECEIVED: USER admin
+[ INFO] 2026-01-18 14:55:48,698 [admin] [192.168.31.19] SENT: 331 User name okay, need password for admin.
+
+[ INFO] 2026-01-18 14:55:48,703 [admin] [192.168.31.19] RECEIVED: PASS *****
+[ INFO] 2026-01-18 14:55:48,704 [admin] [192.168.31.19] Login success - admin
+[ INFO] 2026-01-18 14:55:48,704 [admin] [192.168.31.19] SENT: 230 User logged in, proceed.
+
+[ INFO] 2026-01-18 14:55:48,705 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:48,705 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:48,706 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:55:48,707 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:55:48,732 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:48,733 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:48,737 [admin] [192.168.31.19] RECEIVED: TYPE I
+[ INFO] 2026-01-18 14:55:48,738 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:55:48,739 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:55:48,740 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,195,164)
+
+[ INFO] 2026-01-18 14:55:48,755 [admin] [192.168.31.19] RECEIVED: STOR 前端.docx
+[ INFO] 2026-01-18 14:55:48,769 [admin] [192.168.31.19] File uploaded /前端.docx
+[ INFO] 2026-01-18 14:55:48,770 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:55:48,771 [admin] [192.168.31.19] SENT: 226 Transfer complete.
+
+[ INFO] 2026-01-18 14:55:48,813 [admin] [192.168.31.19] RECEIVED: CWD /
+[ INFO] 2026-01-18 14:55:48,817 [admin] [192.168.31.19] SENT: 250 Directory changed to /
+
+[ INFO] 2026-01-18 14:55:48,820 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:55:48,822 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:55:48,825 [admin] [192.168.31.19] RECEIVED: TYPE A
+[ INFO] 2026-01-18 14:55:48,827 [admin] [192.168.31.19] SENT: 200 Command TYPE okay.
+
+[ INFO] 2026-01-18 14:55:48,830 [admin] [192.168.31.19] RECEIVED: PASV
+[ INFO] 2026-01-18 14:55:48,833 [admin] [192.168.31.19] SENT: 227 Entering Passive Mode (192,168,31,5,195,174)
+
+[ INFO] 2026-01-18 14:55:48,839 [admin] [192.168.31.19] RECEIVED: LIST
+[ INFO] 2026-01-18 14:55:48,844 [admin] [192.168.31.19] SENT: 150 File status okay; about to open data connection.
+
+[ INFO] 2026-01-18 14:55:48,845 [admin] [192.168.31.19] SENT: 226 Closing data connection.
+
+[ INFO] 2026-01-18 14:56:48,878 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:56:48,881 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:57:48,888 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:57:48,890 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+
+[ INFO] 2026-01-18 14:58:48,879 [admin] [192.168.31.19] RECEIVED: PWD
+[ INFO] 2026-01-18 14:58:48,881 [admin] [192.168.31.19] SENT: 257 "/" is current directory.
+

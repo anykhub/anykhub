@@ -36,6 +36,11 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+task:
+  cron:
+    task1: 0/10 * * * * ?
+    task2: 0/20 * * * * ?
+
 # MyBatis-Plus 配置
 mybatis-plus:
   # Mapper XML 文件位置

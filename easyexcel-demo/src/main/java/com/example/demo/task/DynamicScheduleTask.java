@@ -26,15 +26,21 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler taskScheduler = new org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(10);
+        taskScheduler.setThreadNamePrefix("dynamic-task-");
+        taskScheduler.initialize();
+        taskRegistrar.setScheduler(taskScheduler);
+
         // Register Task 1
         taskRegistrar.addTriggerTask(
-                () -> log.info("Task 1 running at: {}", LocalDateTime.now()),
+                () -> log.info("Task 1 running at: {} on thread: {}", LocalDateTime.now(), Thread.currentThread().getName()),
                 getTrigger("task1")
         );
 
         // Register Task 2
         taskRegistrar.addTriggerTask(
-                () -> log.info("Task 2 running at: {}", LocalDateTime.now()),
+                () -> log.info("Task 2 running at: {} on thread: {}", LocalDateTime.now(), Thread.currentThread().getName()),
                 getTrigger("task2")
         );
     }

@@ -43,6 +43,8 @@ public class DynamicScheduleTaskTest {
         dynamicScheduleTask.configureTasks(taskRegistrar);
 
         // Verify
+        verify(taskRegistrar).setScheduler(any());
+
         ArgumentCaptor<Runnable> runnableCaptor = ArgumentCaptor.forClass(Runnable.class);
         ArgumentCaptor<Trigger> triggerCaptor = ArgumentCaptor.forClass(Trigger.class);
 

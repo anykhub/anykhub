@@ -10,9 +10,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-import org.springframework.scheduling.config.TriggerTask;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -32,7 +34,10 @@ public class DynamicScheduleTaskTest {
     @Test
     public void testConfigureTasks() {
         // Setup
-        when(cronConfiguration.getCron()).thenReturn("0/5 * * * * ?");
+        Map<String, String> cronMap = new HashMap<>();
+        cronMap.put("task1", "0/5 * * * * ?");
+        cronMap.put("task2", "0/10 * * * * ?");
+        when(cronConfiguration.getCron()).thenReturn(cronMap);
 
         // Execute
         dynamicScheduleTask.configureTasks(taskRegistrar);
@@ -40,34 +45,28 @@ public class DynamicScheduleTaskTest {
         // Verify
         ArgumentCaptor<Runnable> runnableCaptor = ArgumentCaptor.forClass(Runnable.class);
         ArgumentCaptor<Trigger> triggerCaptor = ArgumentCaptor.forClass(Trigger.class);
-        verify(taskRegistrar).addTriggerTask(runnableCaptor.capture(), triggerCaptor.capture());
 
-        // Test the trigger
-        Trigger trigger = triggerCaptor.getValue();
+        // We expect 2 calls
+        verify(taskRegistrar, times(2)).addTriggerTask(runnableCaptor.capture(), triggerCaptor.capture());
+
+        List<Trigger> triggers = triggerCaptor.getAllValues();
+        assertNotNull(triggers);
+
         TriggerContext context = new TriggerContext() {
             @Override
-            public Date lastScheduledExecutionTime() {
-                return null;
-            }
-
+            public Date lastScheduledExecutionTime() { return null; }
             @Override
-            public Date lastActualExecutionTime() {
-                return null;
-            }
-
+            public Date lastActualExecutionTime() { return null; }
             @Override
-            public Date lastCompletionTime() {
-                return null;
-            }
+            public Date lastCompletionTime() { return null; }
         };
 
-        // First call
-        Date nextExecution = trigger.nextExecutionTime(context);
-        assertNotNull(nextExecution);
+        // Check trigger 1
+        Date nextExecution1 = triggers.get(0).nextExecutionTime(context);
+        assertNotNull(nextExecution1);
 
-        // Simulate dynamic change
-        when(cronConfiguration.getCron()).thenReturn("0/10 * * * * ?");
-        Date nextExecution2 = trigger.nextExecutionTime(context);
+        // Check trigger 2
+        Date nextExecution2 = triggers.get(1).nextExecutionTime(context);
         assertNotNull(nextExecution2);
     }
 }
